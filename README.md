@@ -117,6 +117,20 @@ npm install
 npm run dev
 
 ---
+## 🚀 Local Development
+
+### Frontend
+The frontend runs on:
+
+👉 http://localhost:5176/
+
+To start the frontend:
+```bash
+cd frontend
+npm install
+npm run dev
+
+```
 
 ## 🧾 OUTPUT REQUIREMENTS
 
