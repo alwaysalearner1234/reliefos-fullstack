@@ -1,73 +1,139 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🧱 PROJECT STRUCTURE
 
-Currently, two official plugins are available:
+Create a monorepo:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+/reliefos-fullstack
+  /frontend  → React + Vite + Tailwind
+  /backend   → Flask API
+  README.md
 
-## React Compiler
+--------------------------------------------------
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ BACKEND (Flask) – HIGH PRIORITY
 
-## Expanding the ESLint configuration
+### Tech:
+- Python Flask
+- flask-cors
+- Modular structure (Blueprints)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Structure:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+backend/
+  app.py
+  models.py
+  routes/
+    reports.py
+    stats.py
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔌 API ENDPOINTS
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Reports API
+GET /api/reports  
+POST /api/reports  
+GET /api/reports/<id>  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Stats API
+GET /api/stats  
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 📦 DATA FORMAT
+
+Each report:
+{
+  "id": number,
+  "type": "Flood | Fire | Earthquake",
+  "location": string,
+  "severity": "Low | Medium | High",
+  "status": "Active | Resolved"
+}
+
+---
+
+## 🧠 BACKEND FEATURES
+
+- Store data in memory (list)
+- Generate unique IDs
+- Return JSON responses
+- Enable CORS
+- Clean code organization
+- Handle errors properly
+
+---
+
+## 🎨 FRONTEND (React) – HIGH PRIORITY
+
+### Tech:
+- React (Vite)
+- Tailwind CSS
+- Framer Motion (animations)
+- Recharts (graphs)
+
+---
+
+## 📊 UI FEATURES
+
+### Dashboard:
+- KPI cards (animated count-up)
+- Charts (line, bar, pie)
+- Activity feed (animated)
+- Sidebar navigation
+- Crisis heatmap UI (color zones)
+
+---
+
+## 🔗 FRONTEND ↔ BACKEND
+
+Frontend must call:
+http://localhost:5000/api/...
+
+Use fetch or axios
+
+---
+
+## 🎥 ANIMATIONS
+
+Use Framer Motion for:
+- Page transitions
+- Card hover
+- Data loading
+- Feed animations
+
+---
+
+## 🚀 RUN COMMANDS
+
+Backend:
+cd backend
+pip install flask flask-cors
+python app.py
+
+Frontend:
+cd frontend
+npm install
+npm run dev
+
+---
+
+## 🧾 OUTPUT REQUIREMENTS
+
+- Generate FULL working code
+- No missing files
+- No errors
+- Proper folder structure
+- Ready to run locally
+
+---
+
+## 🔥 BONUS
+
+- Add loading states
+- Add error handling
+- Add mock fallback data
+
+---
+
+Build the entire full-stack project now.
