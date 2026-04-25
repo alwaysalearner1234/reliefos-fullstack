@@ -2,20 +2,23 @@ import { Pie, PieChart, ResponsiveContainer, Tooltip, Cell, Legend } from "recha
 import { Card } from "../ui/Card";
 import { motion } from "framer-motion";
 
-const data = [
-  { name: "Active", value: 65 },
-  { name: "Inactive", value: 20 },
-  { name: "Churned", value: 15 },
-];
+export const StatusChart = ({ stats }: { stats: any }) => {
+  const data = stats ? [
+    { name: "Active", value: stats.active_crises },
+    { name: "Resolved", value: stats.resolved_crises },
+  ] : [
+    { name: "Active", value: 65 },
+    { name: "Resolved", value: 35 },
+  ];
 
-const COLORS = ['#10b981', '#f59e0b', '#ef4444'];
+  const COLORS = ['#3b82f6', '#10b981'];
 
-export const UserCategoriesChart = () => {
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-      <Card className="h-[300px] flex flex-col">
-        <h3 className="text-lg font-outfit font-semibold text-white mb-2">User Categories</h3>
-        <div className="flex-1 w-full min-h-0">
+    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}>
+      <Card className="p-6 h-[400px] flex flex-col">
+        <h3 className="text-lg font-outfit font-semibold text-white mb-2">Status Distribution</h3>
+        
+        <div className="flex-1 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -27,20 +30,19 @@ export const UserCategoriesChart = () => {
                 paddingAngle={5}
                 dataKey="value"
                 stroke="none"
-                animationDuration={2000}
               >
                 {data.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip 
-                contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', borderRadius: '8px', color: '#f1f5f9' }}
+                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '0.5rem' }}
+                itemStyle={{ color: '#e2e8f0' }}
               />
               <Legend 
                 verticalAlign="bottom" 
-                height={36} 
-                iconType="circle"
-                wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }}
+                height={36}
+                formatter={(value) => <span className="text-slate-300">{value}</span>}
               />
             </PieChart>
           </ResponsiveContainer>

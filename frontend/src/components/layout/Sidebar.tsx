@@ -1,19 +1,18 @@
-
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   LayoutDashboard, 
-  BarChart3, 
-  Users, 
+  Map, 
+  FileText, 
   Settings, 
-  Sparkles
+  Radio
 } from "lucide-react";
 import { cn } from "../../utils/cn";
 
 const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: "Overview", active: true },
-  { icon: BarChart3, label: "Analytics", active: false },
-  { icon: Users, label: "Audience", active: false },
-  { icon: Settings, label: "Settings", active: false },
+  { icon: LayoutDashboard, label: "Live Feed", active: true },
+  { icon: Map, label: "Crisis Heatmap", active: false },
+  { icon: FileText, label: "All Reports", active: false },
+  { icon: Settings, label: "System Config", active: false },
 ];
 
 export const Sidebar = ({ 
@@ -26,10 +25,10 @@ export const Sidebar = ({
   const SidebarContent = (
     <div className="h-full flex flex-col p-4 w-64 glass-panel border-r border-slate-700/50 bg-slate-900/80">
       <div className="flex items-center gap-3 px-2 py-4 mb-6">
-        <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center font-outfit font-bold text-white shadow-lg shadow-indigo-500/30">
-          V
+        <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+          <Radio className="w-5 h-5 text-white animate-pulse" />
         </div>
-        <span className="font-outfit font-bold text-xl tracking-wide text-white">Veridian</span>
+        <span className="font-outfit font-bold text-xl tracking-wide text-white">Relief<span className="text-blue-400">OS</span></span>
       </div>
 
       <nav className="flex-1 space-y-2">
@@ -39,30 +38,32 @@ export const Sidebar = ({
             className={cn(
               "w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 font-medium",
               item.active 
-                ? "bg-indigo-500/10 text-indigo-400" 
+                ? "bg-blue-500/10 text-blue-400" 
                 : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
             )}
           >
-            <item.icon className={cn("w-5 h-5", item.active && "text-indigo-500")} />
+            <item.icon className={cn("w-5 h-5", item.active && "text-blue-500")} />
             {item.label}
           </button>
         ))}
       </nav>
 
-      {/* Enterprise Ready Promotional Area */}
-      <div className="mt-auto p-4 rounded-xl bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-500/20 relative overflow-hidden group">
-        <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/20 blur-2xl rounded-full -mr-10 -mt-10 animate-pulse-slow" />
+      {/* System Status Area */}
+      <div className="mt-auto p-4 rounded-xl bg-slate-800/50 border border-slate-700/50 relative overflow-hidden group">
         <div className="relative z-10 flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-indigo-400 font-semibold mb-1">
-            <Sparkles className="w-4 h-4" />
-            <span>Enterprise Ready</span>
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Node Status</span>
+            <span className="flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
           </div>
-          <p className="text-sm text-slate-400 leading-relaxed">
-            Scale your analytics with advanced permissions and SSO.
+          <div className="flex items-center gap-2 text-white font-medium text-sm">
+            <span>Primary Dispatch</span>
+          </div>
+          <p className="text-xs text-slate-500">
+            Connected to emergency net.
           </p>
-          <button className="mt-2 w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/20">
-            Upgrade Now
-          </button>
         </div>
       </div>
     </div>
